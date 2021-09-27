@@ -1,24 +1,17 @@
 const express = require('express')
 const router = express.Router()
+const { tryCatchWrapper } = require('../../middlewares');
+const ctrl =require('../../controllers/contacts')
 
-router.get('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get('/', tryCatchWrapper(ctrl.getAll) )
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get('/:contactId', tryCatchWrapper(ctrl.getById))
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.post('/', tryCatchWrapper(ctrl.addItem));
 
-router.patch('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.delete('/:contactId', tryCatchWrapper(ctrl.deleteItem))
+
+router.patch('/:contactId', tryCatchWrapper(ctrl.updateItem));
 
 module.exports = router
