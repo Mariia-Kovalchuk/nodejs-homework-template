@@ -1,4 +1,4 @@
-const contactsHendlers = require('../../model')
+const contactsHendlers = require('../../model/contacts')
 const Joi = require("joi");
 const { NotFound, BadRequest } = require("http-errors");
 
