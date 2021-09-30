@@ -6,7 +6,8 @@ const { NotFound, BadRequest } = require("http-errors");
 const joiSchema = Joi.object({
     name: Joi.string().min(2).max(30),
     email: Joi.string().email({ minDomainSegments: 2 }),
-    phone: Joi.string().max(14).min(6)
+    phone: Joi.string().max(14).min(6),
+    favorite: Joi.boolean()
 });
 
 const updateItem = async (req, res) => {

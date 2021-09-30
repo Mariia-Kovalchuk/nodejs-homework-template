@@ -1,7 +1,6 @@
 const contactsHendlers = require('../../model/contacts')
 const Joi = require("joi");
-const {  BadRequest } = require("http-errors");
-
+const { BadRequest } = require("http-errors");
 
 const joiSchema = Joi.object({
     name: Joi.string().min(2).max(30).required(),

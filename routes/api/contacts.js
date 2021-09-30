@@ -14,4 +14,6 @@ router.delete('/:contactId', tryCatchWrapper(ctrl.deleteItem))
 
 router.patch('/:contactId', tryCatchWrapper(ctrl.updateItem));
 
+router.patch('/:contactId/favorite', tryCatchWrapper(ctrl.updateItem));
+
 module.exports = router
