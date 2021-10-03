@@ -2,11 +2,13 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 const connectMongoDb = async () => {
-  return mongoose.connect(process.env.DB_HOST, {
+ const { DB_USER, DB_USER_PASS, DB_NAME } = process.env;
+  const DB_HOST=`mongodb+srv://${DB_USER}:${DB_USER_PASS}@db-contacts.jqfvt.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
+  return mongoose.connect(DB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }).then(() => {
-    console.log('Database connection successful')
+    console.log(`${DB_NAME} database connection successful`)
   })
     .catch(error => {
       console.log(error.message)
