@@ -1,5 +1,5 @@
-const tryCatchWrapper = require('./tryCatchWrapper');
+const tryCatchWrapper = require('./tryCatchWrapper')
 
 module.exports = {
-    tryCatchWrapper
+  tryCatchWrapper
 }
