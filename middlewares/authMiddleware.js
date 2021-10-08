@@ -1,39 +1,34 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 const { Unauthorized } = require('http-errors')
-const {getUserById} =require('../services/users')
+const { getUserById } = require('../services/users')
 
 const authMiddleware = async (req, res, next) => {
   try {
-    const { authorization } = req.headers;
+    const { authorization } = req.headers
     if (!authorization) {
-      next(new Unauthorized('Please, provide a token in request authorization header'));
+      next(new Unauthorized('Please, provide a token in request authorization header'))
     }
 
-    const [, token] = authorization.split(' ');
-    // console.log("token:", token);
-    
+    const [, token] = authorization.split(' ')
+
     if (!token) {
-      next(new Unauthorized('Please, provide a token'));
+      next(new Unauthorized('Please, provide a token'))
     }
-    
-    const decodedToken = jwt.decode(token, process.env.JWT_SECRET);
-    // console.log("decodedToken:", decodedToken);
+
+    const decodedToken = jwt.decode(token, process.env.JWT_SECRET)
     if (!decodedToken) {
-      next(new Unauthorized('Not authorized'));
+      next(new Unauthorized('Not authorized'))
     }
     const user = await getUserById(decodedToken.id)
-    console.log(user);
     if (user && user.token === token) {
-      req.user = user;
-      next();
-    }
-    else {
-      next(new Unauthorized('Not authorized'));
+      req.user = user
+      next()
+    } else {
+      next(new Unauthorized('Not authorized'))
     };
-
   } catch (err) {
-    next(new Unauthorized('Invalid token'));
+    next(new Unauthorized('Invalid token'))
   }
-};
+}
 
-module.exports = authMiddleware;
+module.exports = authMiddleware

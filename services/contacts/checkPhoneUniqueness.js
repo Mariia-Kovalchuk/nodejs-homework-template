@@ -1,7 +1,7 @@
 const { Contact } = require('../../db/models/contactModel')
 
-const checkPhoneUniqueness = async (phone) => {
-  const contact = await Contact.findOne({ phone: phone })
+const checkPhoneUniqueness = async (phone, userId) => {
+  const contact = await Contact.findOne({ phone: phone, owner: userId })
 
   if (contact) {
     return contact

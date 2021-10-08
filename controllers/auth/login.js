@@ -16,8 +16,8 @@ const registration = async (req, res) => {
   }
 
   const { email, password } = body
-  const user= await userHendlers.loginUser(email, password)
+  const user = await userHendlers.loginUser(email, password)
   res.status(200).json(user)
-};
+}
 
 module.exports = registration

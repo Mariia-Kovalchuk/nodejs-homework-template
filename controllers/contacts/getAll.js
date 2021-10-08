@@ -1,7 +1,8 @@
 const contactsHendlers = require('../../services/contacts')
 
 const getAll = async (req, res, next) => {
-  const contactList = await contactsHendlers.listContacts()
+  const { _id } = req.user
+  const contactList = await contactsHendlers.listContacts(_id)
   res.json({ contactList })
 }
 

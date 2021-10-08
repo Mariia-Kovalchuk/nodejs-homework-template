@@ -3,7 +3,8 @@ const { NotFound } = require('http-errors')
 
 const getById = async (req, res, next) => {
   const { contactId } = req.params
-  const contact = await contactsHendlers.getContactById(contactId)
+  const { _id } = req.user
+  const contact = await contactsHendlers.getContactById(contactId, _id)
   if (contact) {
     res.json(contact)
   } else {

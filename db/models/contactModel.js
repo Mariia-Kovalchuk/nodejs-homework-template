@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const { Schema, model, SchemaTypes } = require('mongoose')
 
 const contactSchema = new Schema({
   name: {
@@ -20,14 +19,14 @@ const contactSchema = new Schema({
     default: false,
   },
   owner: {
-    type: Schema.Types.ObjectId,
+    type: SchemaTypes.ObjectId,
     ref: 'user',
+    required: true
+
   }
 },
-  { versionKey: false, timestamps: true });
- 
-  
+{ versionKey: false, timestamps: true })
 
-const Contact = mongoose.model('contact', contactSchema)
+const Contact = model('contact', contactSchema)
 
 module.exports = { Contact }

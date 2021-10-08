@@ -1,8 +1,8 @@
 const { Contact } = require('../../db/models/contactModel')
 
-const updateContact = async (contactId, body) => {
+const updateContact = async (contactId, body, userId) => {
   try {
-    return await Contact.findByIdAndUpdate({ _id: contactId }, body, { new: true })
+    return await Contact.findOneAndUpdate({ _id: contactId, owner: userId }, body, { new: true })
   } catch (error) {
     throw error
   }

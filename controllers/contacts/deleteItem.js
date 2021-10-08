@@ -3,7 +3,8 @@ const { NotFound } = require('http-errors')
 
 const deleteItem = async (req, res) => {
   const { contactId } = req.params
-  const isContactDeleted = await contactsHendlers.removeContact(contactId)
+  const { _id } = req.user
+  const isContactDeleted = await contactsHendlers.removeContact(contactId, _id)
   if (isContactDeleted) {
     res.json({ message: 'Contact deleted' })
   } else {

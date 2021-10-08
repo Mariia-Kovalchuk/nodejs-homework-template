@@ -1,6 +1,6 @@
 const usersHendlers = require('../../services/users')
 const Joi = require('joi')
-const { Conflict } = require('http-errors')
+const { Conflict, BadRequest } = require('http-errors')
 
 const joiSchema = Joi.object({
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
