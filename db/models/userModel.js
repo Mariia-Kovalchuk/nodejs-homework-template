@@ -31,4 +31,8 @@ userSchema.pre('save', async function () {
 
 const User = model('user', userSchema)
 
+User.schema.path('subscription').validate(function(value) {
+  return /starter|pro|business/i.test(value);
+}, 'Invalid subscription');
+
 module.exports = { User }

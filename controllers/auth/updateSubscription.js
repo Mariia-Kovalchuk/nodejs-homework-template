@@ -3,7 +3,6 @@ const { NotFound } = require('http-errors')
 
 const updateSubscription = async (req, res, next) => {
   const { user: { _id }, body: { subscription } } = req
-  console.log(subscription)
   const contact = await usersHendlers.updateSubscription(_id, subscription)
   if (contact) {
     res.json(contact)
