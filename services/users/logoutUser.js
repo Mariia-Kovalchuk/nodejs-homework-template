@@ -1,5 +1,5 @@
 const getUserById = require('./getUserById')
-const updateUser = require('./updateUser')
+const updateUsersToken = require('./updateUsersToken')
 const { Unauthorized } = require('http-errors')
 
 const logoutUser = async(userId) => {
@@ -9,7 +9,7 @@ const logoutUser = async(userId) => {
     throw new Unauthorized('Not authorized.')
   }
   const token = null
-  await updateUser(user._id, token)
+  await updateUsersToken(user._id, token)
 }
 
 module.exports = logoutUser

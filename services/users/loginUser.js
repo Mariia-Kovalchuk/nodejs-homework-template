@@ -1,5 +1,5 @@
 const getUserByEmail = require('./getUserByEmail')
-const updateUser = require('./updateUser')
+const updateUsersToken = require('./updateUsersToken')
 const { Unauthorized } = require('http-errors')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
@@ -17,7 +17,7 @@ const loginUser = async (email, password) => {
     id: user._id
   }, process.env.JWT_SECRET)
 
-  const updatedUser = await updateUser(user._id, token)
+  const updatedUser = await updateUsersToken(user._id, token)
   return { token, updatedUser }
 }
 

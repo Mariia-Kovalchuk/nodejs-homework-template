@@ -1,6 +1,6 @@
 const { User } = require('../../db/models/userModel')
 
-const updateUser = async (userId, token) => {
+const updateUsersToken = async (userId, token) => {
   try {
     return await User.findOneAndUpdate({ _id: userId }, { token }, { new: true })
   } catch (error) {
@@ -8,4 +8,4 @@ const updateUser = async (userId, token) => {
   }
 }
 
-module.exports = updateUser
+module.exports = updateUsersToken

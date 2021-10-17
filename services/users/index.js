@@ -2,7 +2,8 @@ const addUser = require('./addUser')
 const getUserByEmail = require('./getUserByEmail')
 const getUserById = require('./getUserById')
 const loginUser = require('./loginUser')
-const updateUser = require('./updateUser')
+const updateUsersToken = require('./updateUsersToken')
+const updateSubscription = require('./updateSubscription')
 const logoutUser = require('./logoutUser')
 
 module.exports = {
@@ -10,6 +11,7 @@ module.exports = {
   getUserByEmail,
   getUserById,
   loginUser,
-  updateUser,
+  updateUsersToken,
+  updateSubscription,
   logoutUser
 }
