@@ -12,6 +12,7 @@ const joiSchema = Joi.object({
 const updateItem = async (req, res) => {
   const { contactId } = req.params
   const { body } = req
+  const { _id } = req.user
   if (Object.keys(body).length === 0) {
     throw new BadRequest('missing fields')
   }
@@ -24,7 +25,7 @@ const updateItem = async (req, res) => {
   if (contactWithSamePhone) {
     throw new BadRequest(`You already have contact ${contactWithSamePhone.name} with phone number ${body.phone}.`)
   };
-  const updatedContact = await contactsHendlers.updateContact(contactId, body)
+  const updatedContact = await contactsHendlers.updateContact(contactId, body, _id)
   if (updatedContact) {
     res.json(updatedContact)
   } else {

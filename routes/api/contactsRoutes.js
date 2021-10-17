@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const { tryCatchWrapper } = require('../../middlewares')
+const { tryCatchWrapper, authMiddleware } = require('../../middlewares')
 const ctrl = require('../../controllers/contacts')
+
+router.use(authMiddleware)
 
 router.get('/', tryCatchWrapper(ctrl.getAll))
 

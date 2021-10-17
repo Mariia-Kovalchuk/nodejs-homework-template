@@ -9,6 +9,7 @@ const joiSchema = Joi.object({
 const updateItemStatus = async (req, res) => {
   const { contactId } = req.params
   const { body } = req
+  const { _id } = req.user
   if (Object.keys(body).length === 0) {
     throw new BadRequest('missing field favorite"')
   }
@@ -17,7 +18,7 @@ const updateItemStatus = async (req, res) => {
     throw new BadRequest(`${error.message}`)
   }
 
-  const updatedContact = await contactsHendlers.updateContact(contactId, body)
+  const updatedContact = await contactsHendlers.updateContact(contactId, body, _id)
   if (updatedContact) {
     res.json(updatedContact)
   } else {
