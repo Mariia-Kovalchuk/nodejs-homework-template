@@ -11,6 +11,9 @@ const userSchema = new Schema({
     required: [true, 'Email is required'],
     unique: true,
   },
+  avatarURL: {
+    type: String
+  },
   subscription: {
     type: String,
     enum: ['starter', 'pro', 'business'],
@@ -32,7 +35,7 @@ userSchema.pre('save', async function () {
 const User = model('user', userSchema)
 
 User.schema.path('subscription').validate(function(value) {
-  return /starter|pro|business/i.test(value);
-}, 'Invalid subscription');
+  return /starter|pro|business/i.test(value)
+}, 'Invalid subscription')
 
 module.exports = { User }
