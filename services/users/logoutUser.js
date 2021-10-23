@@ -4,7 +4,6 @@ const { Unauthorized } = require('http-errors')
 
 const logoutUser = async(userId) => {
   const user = await getUserById(userId)
-  console.log(user)
   if (!user) {
     throw new Unauthorized('Not authorized.')
   }

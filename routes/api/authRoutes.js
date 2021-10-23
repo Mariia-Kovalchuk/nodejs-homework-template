@@ -3,7 +3,6 @@ const router = express.Router()
 const { tryCatchWrapper, authMiddleware, uploadMiddleware } = require('../../middlewares')
 const ctrl = require('../../controllers/auth')
 
-
 router.post('/signup', tryCatchWrapper(ctrl.registration))
 router.post('/login', tryCatchWrapper(ctrl.login))
 router.get('/current', authMiddleware, tryCatchWrapper(ctrl.getCurrentUser))
