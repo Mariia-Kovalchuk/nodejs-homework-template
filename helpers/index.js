@@ -1,5 +1,7 @@
 const uploadImg = require('./cloudinaryUpload')
+const sendEmail = require('./sendEmail')
 
 module.exports = {
-  uploadImg
+  uploadImg,
+  sendEmail
 }

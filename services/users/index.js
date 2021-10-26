@@ -6,6 +6,8 @@ const updateUsersToken = require('./updateUsersToken')
 const updateSubscription = require('./updateSubscription')
 const updateAvatar = require('./updateAvatar')
 const logoutUser = require('./logoutUser')
+const verifyUserEmail = require('./verifyUserEmail')
+const repeatUserEmailVerification = require('./repeatUserEmailVerification')
 
 module.exports = {
   addUser,
@@ -15,5 +17,7 @@ module.exports = {
   updateUsersToken,
   updateAvatar,
   updateSubscription,
-  logoutUser
+  logoutUser,
+  verifyUserEmail,
+  repeatUserEmailVerification
 }

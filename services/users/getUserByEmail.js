@@ -1,8 +1,7 @@
 const { User } = require('../../db/models/userModel')
 
-const getUser = async (email) => {
+const getUserByEmail = async (email) => {
   const user = await User.findOne({ email })
-  // console.log(user);
 
   if (user) {
     return user
@@ -11,4 +10,4 @@ const getUser = async (email) => {
   }
 }
 
-module.exports = getUser
+module.exports = getUserByEmail
