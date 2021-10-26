@@ -5,7 +5,9 @@ const { Conflict, BadRequest } = require('http-errors')
 const joiSchema = Joi.object({
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
   password: Joi.string().min(2).max(30).required(),
-  subscription: Joi.string(),
+  subscription: Joi.string().valid('starter', 'pro', 'business'),
+  avatarURL: Joi.string(),
+
 })
 
 const registration = async (req, res) => {

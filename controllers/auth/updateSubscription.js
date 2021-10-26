@@ -1,14 +1,24 @@
 const usersHendlers = require('../../services/users')
-const { NotFound } = require('http-errors')
+const { NotFound, BadRequest } = require('http-errors')
+const Joi = require('joi')
+
+const joiSchema = Joi.object({
+  subscription: Joi.string().valid('starter', 'pro', 'business'),
+})
 
 const updateSubscription = async (req, res, next) => {
+  const { body } = req
+  const { error } = joiSchema.validate(body)
+  if (error) {
+    throw new BadRequest(` ${error.message}.`)
+  }
+
   const { user: { _id }, body: { subscription } } = req
-  console.log(subscription)
-  const contact = await usersHendlers.updateSubscription(_id, subscription)
-  if (contact) {
-    res.json(contact)
+  const user = await usersHendlers.updateSubscription(_id, subscription)
+  if (user) {
+    res.json(user)
   } else {
-    throw new NotFound(`Contact with id ${_id} not found`)
+    throw new NotFound(`User with id ${_id} not found`)
   }
 }
 

@@ -4,6 +4,7 @@ const getUserById = require('./getUserById')
 const loginUser = require('./loginUser')
 const updateUsersToken = require('./updateUsersToken')
 const updateSubscription = require('./updateSubscription')
+const updateAvatar = require('./updateAvatar')
 const logoutUser = require('./logoutUser')
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
   getUserById,
   loginUser,
   updateUsersToken,
+  updateAvatar,
   updateSubscription,
   logoutUser
 }

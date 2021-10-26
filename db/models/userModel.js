@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt')
+const gravatar = require('gravatar')
 
 const userSchema = new Schema({
   password: {
@@ -10,6 +11,16 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Email is required'],
     unique: true,
+  },
+  avatarURL: {
+    type: String,
+    default: function () {
+      return gravatar.url(this.email, { s: '100', r: 'x', d: 'retro' }, true)
+    }
+  },
+  avatarId: {
+    type: String,
+    default: null
   },
   subscription: {
     type: String,
@@ -30,5 +41,9 @@ userSchema.pre('save', async function () {
 })
 
 const User = model('user', userSchema)
+
+User.schema.path('subscription').validate(function(value) {
+  return /starter|pro|business/i.test(value)
+}, 'Invalid subscription')
 
 module.exports = { User }
