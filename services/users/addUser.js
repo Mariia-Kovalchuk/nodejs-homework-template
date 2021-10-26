@@ -1,5 +1,6 @@
 const { User } = require('../../db/models/userModel')
 // const gravatar = require('gravatar')
+const { sendEmail } = require('../../helpers')
 
 const addUser = async (body) => {
   try {
@@ -11,6 +12,8 @@ const addUser = async (body) => {
     // add default avatar in User model
     const newUser = new User({ email, password, subscription })
     await newUser.save()
+    await sendEmail(newUser)
+
     return newUser
   } catch (error) {
     throw error
